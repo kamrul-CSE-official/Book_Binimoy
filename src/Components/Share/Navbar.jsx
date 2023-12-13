@@ -31,19 +31,22 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-300 rounded-box w-52"
           >
             {navItems?.map((item) => (
               <NavLink to="/" className="btn bg-transparent" key={item.id}>
                 {item.name}
               </NavLink>
             ))}
-            <li className="btn">
+            <NavLink to="/" className="btn bg-transparent">
+              Login / SignUp
+            </NavLink>
+            <li className="mx-auto btn btn-circle">
               <ThemeChange />
             </li>
           </ul>
         </div>
-        <Link to="/" className="hidden md:block text-center m-0 p-0">
+        <Link to="/" className="text-center m-0 p-0">
           <img className="m-0 p-0" src={logo} alt="Book bridge" width={120} />
         </Link>
       </div>
@@ -91,7 +94,7 @@ export default function Navbar() {
             </div>
             <div
               tabIndex={0}
-              className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
+              className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-green-300 shadow"
             >
               <div className="card-body">
                 <span className="font-bold text-lg">8 Items</span>
@@ -121,7 +124,7 @@ export default function Navbar() {
 
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-300 rounded-box w-52"
               >
                 <li>
                   <a className="justify-between">
@@ -139,7 +142,7 @@ export default function Navbar() {
             </div>
           ) : (
             <Link to="#">
-              <button className="text-white bg-yellow-400 hover:bg-yellow-600 p-3 rounded-lg mx-3 font-bold">
+              <button className="hidden md:inline-block text-white bg-yellow-400 hover:bg-yellow-600 p-3 rounded-lg mx-3 font-bold">
                 Login / SignUp
               </button>
             </Link>
