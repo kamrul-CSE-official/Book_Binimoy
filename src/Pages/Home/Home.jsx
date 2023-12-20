@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Banner from "./Banner";
 
 export default function Home() {
   const { user, logOut } = useContext(AuthContext);
@@ -9,10 +10,7 @@ export default function Home() {
   };
   return (
     <div>
-      Home : {user?.email}
-      <button onClick={handleLogOut} className="btn btn-error">
-        LogOut
-      </button>
+      <Banner />
     </div>
   );
 }
