@@ -1,62 +1,71 @@
 import { useEffect, useState } from "react";
 
 export default function Banner() {
-    const [second, setSecond] = useState(0);
+    const [time, setTime] = useState({ minutes: 30, seconds: 0 });
 
     useEffect(() => {
       const intervalId = setInterval(() => {
-        setSecond((prevSecond) => (prevSecond + 1) % 60);
+        setTime((prevTime) => {
+          const newSeconds = prevTime.seconds === 0 ? 59 : prevTime.seconds - 1;
+          const newMinutes =
+            newSeconds === 59 ? prevTime.minutes - 1 : prevTime.minutes;
+
+          return {
+            minutes: newMinutes < 0 ? 20 : newMinutes,
+            seconds: newSeconds,
+          };
+        });
       }, 1000);
 
       return () => clearInterval(intervalId);
     }, []);
-  return (
-    <div className="hero">
-      <div className="hero-content flex-col lg:flex-row-reverse mx-auto">
-        <img
-          src="https://graceful-twilight-84f500.netlify.app/static/media/banner.6d40544ae08722b22ef4.jpg"
-          className="rounded-lg shadow-2xl"
-        />
-        <div className="text-center">
-          <h1 className="text-2xl md:text-3xl font-bold">
-            আমাদের সকল বইয়ে থাকছে <span className="text-green-600">১৫%</span>{" "}
-            ডিসকাউন্ট 😍।
-          </h1>
-          <p className="py-6">
-            বই কিনে কেউ কখন দরিদ্র হয় না। বই মানুষের মনে উৎসতা বৃদ্বি করে।
-            মানুষকে মহৎ করে তোলে। এক জন বই পাঠক কখনও উগ্র হতে পারে না। বই
-            প্রেকিম গড়ে উঠুক বাংলার প্রতিটি ঘরে ঘরে এটাই আমাদের এক মাত্র লক্ষ।
-          </p>
-          <div className="flex items-center justify-center">
-            <div className="flex gap-5 font-extrabold">
-              <div>
-                <span className="countdown font-mono text-4xl">
-                  <span style={{ "--value": 15 }}></span>
-                </span>
-                days
-              </div>
-              <div>
-                <span className="countdown font-mono text-4xl">
-                  <span style={{ "--value": 10 }}></span>
-                </span>
-                hours
-              </div>
-              <div>
-                <span className="countdown font-mono text-4xl">
-                  <span style={{ "--value": 24 }}></span>
-                </span>
-                min
-              </div>
-              <div>
-                <span className="countdown font-mono text-4xl">
-                  <span style={{ "--value": second }}></span>
-                </span>
-                sec
+    return (
+      <div className="hero">
+        <div className="hero-content flex-col lg:flex-row-reverse mx-auto">
+          <img
+            src="https://graceful-twilight-84f500.netlify.app/static/media/banner.6d40544ae08722b22ef4.jpg"
+            className="rounded-lg shadow-2xl"
+          />
+          <div className="text-center">
+            <h1 className="text-2xl md:text-3xl font-bold lg:whitespace-nowrap">
+              আমাদের সকল বইয়ে থাকছে <span className="text-green-600">১৫%</span>{" "}
+              ডিসকাউন্ট 😍।
+            </h1>
+            <p className="py-6">
+              বই কিনে কেউ কখন দরিদ্র হয় না। বই মানুষের মনে উৎসতা বৃদ্বি করে।
+              মানুষকে মহৎ করে তোলে। এক জন বই পাঠক কখনও উগ্র হতে পারে না। বই
+              প্রেকিম গড়ে উঠুক বাংলার প্রতিটি ঘরে ঘরে এটাই আমাদের এক মাত্র লক্ষ।
+            </p>
+            <div className="flex items-center justify-center">
+              <div className="flex gap-5 font-extrabold">
+                <div>
+                  <span className="countdown font-mono text-4xl">
+                    <span style={{ "--value": 4 }}></span>
+                  </span>
+                  days
+                </div>
+                <div>
+                  <span className="countdown font-mono text-4xl">
+                    <span style={{ "--value": 2 }}></span>
+                  </span>
+                  hours
+                </div>
+                <div>
+                  <span className="countdown font-mono text-4xl">
+                    <span style={{ "--value": time.minutes % 60 }}></span>
+                  </span>
+                  min
+                </div>
+                <div>
+                  <span className="countdown font-mono text-4xl">
+                    <span style={{ "--value": time.seconds }}></span>
+                  </span>
+                  sec
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
 }
