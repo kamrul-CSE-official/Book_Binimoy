@@ -25,5 +25,5 @@ Welcome to our Books Bridges E-Commerce Web Application! This platform allows us
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/book-e-commerce.git
-   cd book-e-commerce
+   git clone https://github.com/kamrul-CSE-official/Book_Bridges.git
+   cd Book_Bridges
