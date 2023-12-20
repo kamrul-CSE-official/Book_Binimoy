@@ -27,7 +27,7 @@ export default function Banner() {
         <div className="text-center">
           <h1 className="text-2xl md:text-3xl font-bold lg:whitespace-nowrap">
             আমাদের সকল বইয়ে থাকছে <span className="text-green-600">১৫%</span>{" "}
-            ছাঁড়🔖
+            ছাঁড়!🔖
           </h1>
           <p className="py-6">
             বই কিনে কেউ কখন দরিদ্র হয় না। বই মানুষের মনে উৎসতা বৃদ্বি করে।
