@@ -1,16 +1,25 @@
 import { Link, NavLink } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
+import { FcSearch } from "react-icons/fc";
 import Marquee from "react-fast-marquee";
 import ThemeChange from "./ThemeChange";
 import logo from "../../assets/logo.png";
+import { useState } from "react";
+import SearchModal from "./SearchModal";
 
 export default function Navbar() {
+  const [isModalOpen, setModalOpen] = useState(false);
   const user = false;
   const navItems = [
     { id: 0, name: "Home", path: "/" },
     { id: 1, name: "Best Sales", path: "/" },
     { id: 2, name: "About", path: "/about" },
   ];
+
+  const openSearchModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <div>
       {/* navbar */}
@@ -76,6 +85,15 @@ export default function Navbar() {
         </div>
         <div className="navbar-end">
           <div className="flex-none">
+            {/* search */}
+            <div className="dropdown dropdown-end" title="Search">
+              <button
+                onClick={openSearchModal}
+                className="btn btn-circle bg-transparent"
+              >
+                <FcSearch size={25} />
+              </button>
+            </div>
             {/* wish list */}
             <div className="dropdown dropdown-end" title="Wish List">
               <div
@@ -217,6 +235,7 @@ export default function Navbar() {
           </p>
         </Marquee>
       </div>
+      <SearchModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
     </div>
   );
 }
