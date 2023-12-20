@@ -15,20 +15,18 @@ const TeamMember = ({ name, role, imageSrc }) => (
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-md p-10 max-w-4xl w-full">
-        <h1 className="text-4xl font-extrabold mb-6 text-gray-800 text-center">
-          About Us
-        </h1>
-        <p className="text-gray-700 mb-8 text-center">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="rounded-lg shadow-md p-10 max-w-4xl w-full">
+        <h1 className="text-4xl font-extrabold mb-6 text-center">About Us</h1>
+        <p className="mb-8 text-center">
           Welcome to our About Us page. We are a passionate team dedicated to
           creating amazing products and providing excellent services.
         </p>
-        <p className="text-gray-700 mb-8 text-center">
+        <p className="mb-8 text-center">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
-        <p className="text-gray-700 mb-8 text-center">
+        <p className=" mb-8 text-center">
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
           nisi ut aliquip ex ea commodo consequat.
         </p>
@@ -36,7 +34,7 @@ const About = () => {
         {/* Mission and Vision */}
         <div className="mb-8 text-center">
           <h2 className="text-2xl font-semibold mb-4">Mission and Vision</h2>
-          <p className="text-gray-700">
+          <p>
             Our mission is to empower individuals and businesses through
             innovative solutions. We envision a world where technology enriches
             lives and fosters positive change.
@@ -57,7 +55,7 @@ const About = () => {
         {/* Core Values */}
         <div className="mb-8 text-center">
           <h2 className="text-2xl font-semibold mb-4">Core Values</h2>
-          <ul className="list-disc list-inside text-gray-700">
+          <ul className="list-disc list-inside ">
             <li>Customer First</li>
             <li>Innovation and Creativity</li>
             <li>Integrity and Transparency</li>
@@ -71,42 +69,34 @@ const About = () => {
           <h2 className="text-2xl font-semibold mb-4">Our Achievements</h2>
           <div className="flex items-center space-x-4">
             <FaTrophy className="text-blue-500" size={24} />
-            <p className="text-gray-700">Winner of the Innovation Award 2022</p>
+            <p>Winner of the Innovation Award 2022</p>
           </div>
-          {/* Add more achievements as needed */}
         </div>
 
-        {/* Why Choose Us */}
         <div className="mb-8 text-center">
           <h2 className="text-2xl font-semibold mb-4">Why Choose Us?</h2>
           <div className="flex items-center space-x-4">
             <FaHeart className="text-red-500" size={24} />
-            <p className="text-gray-700">
-              Passionate about delivering exceptional value to our clients.
-            </p>
+            <p>Passionate about delivering exceptional value to our clients.</p>
           </div>
-          {/* Add more reasons as needed */}
         </div>
 
-        {/* Additional Content */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-center">
             Additional Content
           </h2>
-          <p className="text-gray-700 text-center">
+          <p className="text-center">
             We are committed to continuous improvement and strive for excellence
             in everything we do. Our dedication to quality and customer
             satisfaction sets us apart.
           </p>
-          {/* Add more content as needed */}
         </div>
 
-        {/* Contact section */}
         <div className="mt-8 text-center">
           <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
           <div className="flex items-center space-x-4">
             <FaMailBulk className="text-blue-500" size={24} />
-            <p className="text-gray-700">
+            <p className="">
               Have questions or want to get in touch? Email us at{" "}
               <a
                 href="mailto:info@example.com"
@@ -114,7 +104,6 @@ const About = () => {
               >
                 info@example.com
               </a>
-              .
             </p>
           </div>
         </div>

@@ -18,9 +18,9 @@ export default function Banner() {
           className="rounded-lg shadow-2xl"
         />
         <div className="text-center">
-          <h1 className="text-2xl md:text-4xl font-bold">
+          <h1 className="text-2xl md:text-3xl font-bold">
             আমাদের সকল বইয়ে থাকছে <span className="text-green-600">১৫%</span>{" "}
-            ডিসকাউন্ট 😍 ।
+            ডিসকাউন্ট 😍।
           </h1>
           <p className="py-6">
             বই কিনে কেউ কখন দরিদ্র হয় না। বই মানুষের মনে উৎসতা বৃদ্বি করে।
