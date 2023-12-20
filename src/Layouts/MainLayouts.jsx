@@ -5,9 +5,11 @@ import Footer from "../Components/Share/Footer";
 export default function MainLayouts() {
   return (
     <div>
-        <Navbar />
-        <Outlet/>
-        <Footer/>
+      <Navbar />
+      <div>
+        <Outlet />
+      </div>
+      <Footer />
     </div>
-  )
+  );
 }
