@@ -44,7 +44,7 @@ export default function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[15] p-2 shadow bg-green-300 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[15] p-2 shadow bg-green-300 rounded-box w-52 text-black"
             >
               {navItems?.map((item) => (
                 <NavLink
@@ -55,9 +55,13 @@ export default function Navbar() {
                   {item.name}
                 </NavLink>
               ))}
-              <NavLink to="/" className="btn bg-transparent">
-                Login / SignUp
-              </NavLink>
+              {!user ? (
+                <NavLink to="/" className="btn bg-transparent">
+                  Login / SignUp
+                </NavLink>
+              ) : (
+                <NavLink to="/">Profile</NavLink>
+              )}
               <li className="mx-auto btn btn-circle">
                 <ThemeChange />
               </li>
@@ -68,7 +72,7 @@ export default function Navbar() {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 text-black">
             {navItems?.map((item) => (
               <NavLink
                 to={`${item.path}`}
@@ -162,7 +166,7 @@ export default function Navbar() {
               </div>
             </div>
             {user ? (
-              <div className="dropdown dropdown-end">
+              <div className="hidden md:inline-block dropdown dropdown-end">
                 <div
                   tabIndex={0}
                   role="button"
@@ -178,7 +182,7 @@ export default function Navbar() {
 
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-300 rounded-box w-52"
+                  className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-green-300 rounded-box w-52"
                 >
                   <li>
                     <a className="justify-between">
