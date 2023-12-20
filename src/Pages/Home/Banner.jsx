@@ -32,7 +32,7 @@ export default function Banner() {
           <p className="py-6">
             বই কিনে কেউ কখন দরিদ্র হয় না। বই মানুষের মনে উৎসতা বৃদ্বি করে।
             মানুষকে মহৎ করে তোলে। এক জন বই পাঠক কখনও উগ্র হতে পারে না। বই
-            প্রেকিম গড়ে উঠুক বাংলার প্রতিটি ঘরে ঘরে এটাই আমাদের এক মাত্র লক্ষ।
+            প্রেমিক গড়ে উঠুক বাংলার প্রতিটি ঘরে ঘরে এটাই আমাদের এক মাত্র লক্ষ।
           </p>
           <div className="flex items-center justify-center">
             <div className="flex gap-5 font-extrabold">
