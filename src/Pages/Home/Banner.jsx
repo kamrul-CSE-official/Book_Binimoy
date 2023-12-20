@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
 
 export default function Banner() {
-  const [second, setSecond] = useState(0);
+    const [second, setSecond] = useState(0);
 
-  useEffect(() => {
-    if (second === 60) {
-      setSecond(0);
-    }
-    const intervalId = setInterval(() => {
-      setSecond((prevSecond) => prevSecond + 1);
-    }, 1000);
+    useEffect(() => {
+      const intervalId = setInterval(() => {
+        setSecond((prevSecond) => (prevSecond + 1) % 60);
+      }, 1000);
 
-    // Clear the interval when the component is unmounted
-    return () => clearInterval(intervalId);
-  }, []);
+      return () => clearInterval(intervalId);
+    }, []);
   return (
     <div className="hero">
       <div className="hero-content flex-col lg:flex-row-reverse">
