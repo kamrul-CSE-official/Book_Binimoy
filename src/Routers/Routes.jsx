@@ -5,6 +5,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import About from "../Pages/About/About";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
+import SearchResult from "../Pages/SearchResult/SearchResult";
 
 const routes = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const routes = createBrowserRouter([
       {
         path: "/regester",
         element: <Register />,
+      },
+      {
+        path: "/search/:searchInput",
+        element: <SearchResult />,
       },
       {
         path: "/about",

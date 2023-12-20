@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import { IoCloseSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export default function SearchModal({ isModalOpen, setModalOpen }) {
   const [searchInput, setSearchInput] = useState("");
-
   const closeModal = () => {
     setModalOpen(false);
   };
 
   const handleSearch = () => {
-    console.log("Search input:", searchInput);
+    closeModal();
   };
 
   return (
@@ -58,12 +58,14 @@ export default function SearchModal({ isModalOpen, setModalOpen }) {
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
                       />
-                      <button
-                        onClick={handleSearch}
-                        className="btn text-white bg-green-600"
-                      >
-                        Search
-                      </button>
+                      <Link to={`/search/${searchInput}`}>
+                        <button
+                          onClick={() => handleSearch()}
+                          className="btn text-white bg-green-600"
+                        >
+                          Search
+                        </button>
+                      </Link>
                     </div>{" "}
                     <p>
                       You search:{" "}
