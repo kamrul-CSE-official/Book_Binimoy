@@ -8,7 +8,7 @@ export default function Navbar() {
   const navItems = [
     { id: 0, name: "Home", path: "/" },
     { id: 1, name: "Best Sales", path: "/" },
-    { id: 2, name: "About", path: "/" },
+    { id: 2, name: "About", path: "/about" },
   ];
   return (
     <div className="navbar bg-green-100 m-0 p-0">
@@ -35,7 +35,11 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-300 rounded-box w-52"
           >
             {navItems?.map((item) => (
-              <NavLink to="/" className="btn bg-transparent" key={item.id}>
+              <NavLink
+                to={`${item.path}`}
+                className="btn bg-transparent"
+                key={item.id}
+              >
                 {item.name}
               </NavLink>
             ))}
@@ -55,7 +59,7 @@ export default function Navbar() {
         <ul className="menu menu-horizontal px-1">
           {navItems?.map((item) => (
             <NavLink
-              to="/"
+              to={`${item.path}`}
               className="btn bg-transparent font-bold"
               key={item.id}
             >
