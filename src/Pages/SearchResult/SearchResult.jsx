@@ -21,7 +21,25 @@ const SearchResultPage = () => {
       {!isLoading && error == null ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {data?.docs?.slice(0, isSeeAll).map((result) => (
-            <div key={result.key} className="bg-white p-6 rounded-lg shadow-md">
+            <div
+              key={result.key}
+              className="bg-white p-6 rounded-lg shadow-md mx-auto"
+            >
+              {result?.cover_i ? (
+                <img
+                  src={`https://covers.openlibrary.org/b/id/${result?.cover_i}-L.jpg`}
+                  alt={result.title}
+                  width="200"
+                  className="mx-auto mb-1"
+                />
+              ) : (
+                <img
+                  src="https://covers.openlibrary.org/b/id/6283369-L.jpg"
+                  alt={result.title}
+                  width="200"
+                  className="mx-auto mb-1"
+                />
+              )}
               <h3 className="text-xl font-semibold mb-2">{result.title}</h3>
               <p className="text-gray-600 mb-4">{result.author}</p>
               <p className="text-gray-700">{result.description}</p>
