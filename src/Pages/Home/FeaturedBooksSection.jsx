@@ -33,7 +33,7 @@ const FeaturedBooksSection = () => {
                   ) : (
                     <img
                       src={imgNotFound}
-                      alt={result.title.slice(1, 10)}
+                      alt={result.title.slice(0, 10)}
                       width="200"
                       className="h-60 rounded-t-lg object-cover"
                     />
@@ -47,7 +47,7 @@ const FeaturedBooksSection = () => {
                 </span>
                 <div className="mt-4 px-5 pb-5">
                   <h5 className="text-xl font-semibold tracking-tight text-slate-900">
-                    {result.title.slice(1, 20)}
+                    {result.title.slice(0, 20)}
                   </h5>
 
                   <div className="mt-2.5 mb-5 flex items-center">

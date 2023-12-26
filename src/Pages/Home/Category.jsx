@@ -38,7 +38,7 @@ export default function Category() {
           </Link>
 
           {/* Donate Books */}
-          <Link to="/donate" className="hover:shadow-lg duration-200">
+          <Link to="/donateBook" className="hover:shadow-lg duration-200">
             <div className="bg-white p-4 rounded-md shadow-md">
               <FaGift className="text-4xl text-red-500 mb-2" />
               <h3 className="text-xl font-semibold mb-2">Donate Books</h3>

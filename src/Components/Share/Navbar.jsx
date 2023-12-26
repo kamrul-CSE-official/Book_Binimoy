@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import { FcSearch } from "react-icons/fc";
-import Marquee from "react-fast-marquee";
+// import Marquee from "react-fast-marquee";
 import ThemeChange from "./ThemeChange";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
@@ -199,7 +199,7 @@ export default function Navbar() {
                 </ul>
               </div>
             ) : (
-              <Link to="#">
+              <Link to="/login">
                 <button className="btn btn-outline border-2 rounded-xl border-yellow-300 hidden md:inline-block text-black hover:bg-yellow-100 hover:text-black hover:border-yellow-600 p-2 mx-2 font-bold">
                   Login / SignUp
                 </button>
@@ -209,7 +209,7 @@ export default function Navbar() {
         </div>
       </div>
       {/* marquee */}
-      <div className="relative font-semibold">
+      {/* <div className="relative font-semibold">
         <button className="btn z-10 bg-green-600 hover:bg-green-500 text-white absolute">
           Notice
         </button>
@@ -238,7 +238,7 @@ export default function Navbar() {
             করতে এবং বিশ্বভরে আরও বৃদ্ধি করতে সাহায্য করতে পারে। 📔
           </p>
         </Marquee>
-      </div>
+      </div> */}
       <SearchModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} />
     </div>
   );
