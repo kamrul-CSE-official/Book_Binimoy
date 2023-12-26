@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   FaShoppingCart,
   FaMoneyBillAlt,
@@ -16,7 +15,7 @@ export default function Category() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Buy Books */}
-          <Link to="/buy" className="hover:shadow-lg duration-200">
+          <div className="hover:shadow-lg duration-200">
             <div className="bg-white p-4 rounded-md shadow-md">
               <FaShoppingCart className="text-4xl text-blue-500 mb-2" />
               <h3 className="text-xl font-semibold mb-2">Buy Books</h3>
@@ -24,10 +23,10 @@ export default function Category() {
                 Find your next favorite book to purchase.
               </p>
             </div>
-          </Link>
+          </div>
 
           {/* Sell Books */}
-          <Link to="/sell" className="hover:shadow-lg duration-200">
+          <div className="hover:shadow-lg duration-200">
             <div className="bg-white p-4 rounded-md shadow-md">
               <FaMoneyBillAlt className="text-4xl text-green-500 mb-2" />
               <h3 className="text-xl font-semibold mb-2">Sell Books</h3>
@@ -35,10 +34,10 @@ export default function Category() {
                 List your books for sale and connect with buyers.
               </p>
             </div>
-          </Link>
+          </div>
 
           {/* Donate Books */}
-          <Link to="/donateBook" className="hover:shadow-lg duration-200">
+          <div className="hover:shadow-lg duration-200">
             <div className="bg-white p-4 rounded-md shadow-md">
               <FaGift className="text-4xl text-red-500 mb-2" />
               <h3 className="text-xl font-semibold mb-2">Donate Books</h3>
@@ -46,10 +45,10 @@ export default function Category() {
                 Contribute to spreading knowledge by donating books.
               </p>
             </div>
-          </Link>
+          </div>
 
           {/* Rent Books */}
-          <Link to="/rent" className="hover:shadow-lg duration-200">
+          <div className="hover:shadow-lg duration-200">
             <div className="bg-white p-4 rounded-md shadow-md">
               <FaBookReader className="text-4xl text-purple-500 mb-2" />
               <h3 className="text-xl font-semibold mb-2">Rent Books</h3>
@@ -57,7 +56,7 @@ export default function Category() {
                 Explore renting options for your desired books.
               </p>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </div>

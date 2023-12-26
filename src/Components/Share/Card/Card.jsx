@@ -1,4 +1,3 @@
-import { FcLikePlaceholder } from "react-icons/fc";
 import imgNotFound from "../../../assets/bookImgNotFound.png";
 
 const getRandomPrice = () => {
@@ -33,9 +32,7 @@ export default function Card({ result }) {
           />
         )}
       </div>
-      <span className="absolute top-0 right-0 p-3">
-        <FcLikePlaceholder size={30} />
-      </span>
+      <span className="absolute top-0 right-0 p-3"></span>
       <span className="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-black text-center text-sm text-white">
         15% off
       </span>
