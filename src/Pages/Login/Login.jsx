@@ -48,7 +48,7 @@ export default function Login() {
       }}
       className="hero min-h-screen"
     >
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-3/4">
         <div className="card w-full shadow-2xl bg-base-100">
           <h1 className="text-4xl font-extrabold text-green-500 text-center my-3">
             Please Login

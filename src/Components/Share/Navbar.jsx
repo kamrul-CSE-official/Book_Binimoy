@@ -4,12 +4,13 @@ import { FcSearch } from "react-icons/fc";
 // import Marquee from "react-fast-marquee";
 import ThemeChange from "./ThemeChange";
 import logo from "../../assets/logo.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SearchModal from "./SearchModal";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 export default function Navbar() {
+  const { user } = useContext(AuthContext);
   const [isModalOpen, setModalOpen] = useState(false);
-  const user = false;
   const navItems = [
     { id: 0, name: "Home", path: "/" },
     { id: 1, name: "Best Sales", path: "/" },
@@ -60,7 +61,7 @@ export default function Navbar() {
                   Login / SignUp
                 </NavLink>
               ) : (
-                <NavLink to="/">Profile</NavLink>
+                <NavLink to="/">{user.email}</NavLink>
               )}
               <li className="mx-auto btn btn-circle">
                 <ThemeChange />
@@ -185,10 +186,9 @@ export default function Navbar() {
                   className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-green-300 rounded-box w-52"
                 >
                   <li>
-                    <a className="justify-between">
+                    <Link to="/profile" className="justify-between">
                       Profile
-                      <span className="badge">New</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a>Settings</a>

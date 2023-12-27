@@ -7,6 +7,7 @@ import About from "../Pages/About/About";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import SearchResult from "../Pages/SearchResult/SearchResult";
 import DonateForm from "../Pages/DonateForm/DonateForm";
+import Profile from "../Pages/Profile/Profile";
 
 const routes = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const routes = createBrowserRouter([
       {
         path: "/donateBook",
         element: <DonateForm />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
       {
         path: "/about",
