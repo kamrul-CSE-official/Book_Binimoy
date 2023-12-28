@@ -16,7 +16,7 @@ export default function Products() {
       .then((data) => setData(data));
   }, []);
 
-  const { toast } = useToast();
+  useToast();
 
   //! Dummy Data
 
