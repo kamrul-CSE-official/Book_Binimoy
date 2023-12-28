@@ -1,96 +1,132 @@
 [
   {
-    "_id": 1,
+    "id": 1,
+    "status": true,
     "name": "Guess How Much I Love You",
-    "image": "https://covers.openlibrary.org/b/id/13282906-L.jpg",
+    "author": "Kamrl Khan",
+    "edition": 1,
+    "publishedDate": "2022-01-01",
+    "pages": 200,
     "price": 31.99,
-    "features": [
-      "1.69'' HD display",
-      "Support 12 workout modes",
-      "Support all-day heart rate and blood oxygen monitoring",
-      "Support intelligent sleep monitoring",
-      "IP68 dustproof and waterproof",
-      "20 days of battery life"
-    ],
-    "status": true,
-    "rating": 4
+    "rating": 4,
+    "details": "A heartwarming story about love. This book features a captivating narrative that explores the depths of affection. It's a delightful journey of expressing love in various ways.",
+    "image": "https://covers.openlibrary.org/b/id/13282906-L.jpg"
   },
   {
-    "_id": 2,
+    "id": 2,
+    "status": false,
     "name": "JavaScript",
-    "image": "https://covers.openlibrary.org/b/id/10737959-L.jpg",
+    "author": "John Doe",
+    "edition": 2,
+    "publishedDate": "2021-05-15",
+    "pages": 300,
     "price": 32.38,
-    "features": [
-      "38g compact body, more comfortable to wear",
-      "Support 12 workout modes",
-      "Support SpO₂ tracking and heart rate monitoring",
-      "Support smart sleep monitoring",
-      "IP68 dustproof and waterproof",
-      "20-day battery life"
-    ],
-    "status": false,
-    "rating": 3
+    "rating": 3,
+    "details": "A comprehensive guide to JavaScript programming. This book covers fundamental concepts and advanced techniques, making it an essential resource for both beginners and experienced developers.",
+    "image": "https://covers.openlibrary.org/b/id/10737959-L.jpg"
   },
   {
-    "_id": 3,
+    "id": 3,
+    "status": true,
     "name": "React pro+",
-    "image": "https://covers.openlibrary.org/b/id/10509561-L.jpg",
+    "author": "Jane Smith",
+    "edition": 1,
+    "publishedDate": "2023-02-20",
+    "pages": 250,
     "price": 48.79,
-    "features": [
-      "Bluetooth 5.2, worry-free communication made easy",
-      "Precise and clear experience with 1.43\" Amoled display",
-      "5d looking level-up, exquisite metal bezel",
-      "Always-on display, conf_ident time control",
-      "Versatile watch faces, support customize watch face"
-    ],
-    "status": true,
-    "rating": 5
+    "rating": 5,
+    "details": "Advanced techniques for React development. Dive deep into React with this comprehensive guide. It covers the latest features, best practices, and advanced concepts to enhance your React skills.",
+    "image": "https://covers.openlibrary.org/b/id/10509561-L.jpg"
   },
   {
-    "_id": 4,
+    "id": 4,
+    "status": true,
     "name": "Python pro",
-    "image": "https://covers.openlibrary.org/b/id/988215-L.jpg",
+    "author": "Alan Johnson",
+    "edition": 1,
+    "publishedDate": "2022-11-10",
+    "pages": 180,
     "price": 38.99,
-    "features": [
-      "360*360 high resolution display",
-      "Support 12 workout modes",
-      "Support all-day heart rate and blood oxygen monitoring",
-      "Support intelligent sleep monitoring",
-      "20 days of battery life"
-    ],
-    "status": true,
-    "rating": 2
+    "rating": 2,
+    "details": "Master Python programming with this guide. This book provides a hands-on approach to Python, covering essential topics, practical examples, and tips for effective coding.",
+    "image": "https://covers.openlibrary.org/b/id/988215-L.jpg"
   },
   {
-    "_id": 5,
+    "id": 5,
+    "status": true,
     "name": "The C Programming Language",
-    "image": "https://covers.openlibrary.org/b/id/6684943-L.jpg",
+    "author": "Emily White",
+    "edition": 3,
+    "publishedDate": "2021-07-05",
+    "pages": 400,
     "price": 54.84,
-    "features": [
-      "1.78'' AMOLED HD display",
-      "60HZ refresh rate, smooth and delicate picture quality",
-      "Support 105 workout modes",
-      "Support multi-UI main menu mode",
-      "Support all-day heart rate and blood oxygen monitoring",
-      "Support Alipay offline payment"
-    ],
-    "status": false,
-    "rating": 4
+    "rating": 4,
+    "details": "Classic book on C programming. Explore the fundamentals of C programming with this timeless classic. It covers syntax, data structures, and programming principles in-depth.",
+    "image": "https://covers.openlibrary.org/b/id/6684943-L.jpg"
   },
   {
-    "_id": 6,
-    "name": "React",
-    "image": "https://covers.openlibrary.org/b/id/13306764-L.jpg",
-    "price": 63.07,
-    "features": [
-      "1.2'' AMOLED HD display",
-      "Support 14 workout modes",
-      "Support all-day heart rate and blood oxygen monitoring",
-      "SONY GPS, accurate positioning of movement trajectory",
-      "5ATM waterproof",
-      "21 days of battery life"
-    ],
+    "id": 6,
     "status": true,
-    "rating": 5
+    "name": "React",
+    "author": "Michael Brown",
+    "edition": 1,
+    "publishedDate": "2023-04-15",
+    "pages": 220,
+    "price": 63.07,
+    "rating": 5,
+    "details": "Essential concepts for React developers. Master the core concepts of React with this guide. It provides insights into state management, component lifecycle, and advanced React patterns.",
+    "image": "https://covers.openlibrary.org/b/id/13306764-L.jpg"
+  },
+  {
+    "id": 7,
+    "status": false,
+    "name": "Data Science with Python",
+    "author": "Alice Johnson",
+    "edition": 2,
+    "publishedDate": "2022-09-12",
+    "pages": 320,
+    "price": 45.99,
+    "rating": 4,
+    "details": "Explore the world of data science using Python. This book covers data analysis, machine learning, and visualization with practical examples and real-world applications.",
+    "image": "https://covers.openlibrary.org/b/id/11988752-L.jpg"
+  },
+  {
+    "id": 8,
+    "status": true,
+    "name": "Machine Learning Mastery",
+    "author": "David Miller",
+    "edition": 1,
+    "publishedDate": "2023-01-30",
+    "pages": 280,
+    "price": 57.25,
+    "rating": 5,
+    "details": "Master machine learning algorithms with hands-on examples. Dive into the world of machine learning with this comprehensive guide. It covers algorithms, models, and practical implementation.",
+    "image": "https://covers.openlibrary.org/b/id/11008458-L.jpg"
+  },
+  {
+    "id": 9,
+    "status": true,
+    "name": "Design Patterns",
+    "author": "Erin Taylor",
+    "edition": 4,
+    "publishedDate": "2021-12-05",
+    "pages": 350,
+    "price": 39.99,
+    "rating": 4,
+    "details": "Classic book on software design patterns. Learn about software design patterns and best practices in this classic book. It covers principles that enhance software design and maintainability.",
+    "image": "https://covers.openlibrary.org/b/id/10127195-L.jpg"
+  },
+  {
+    "id": 10,
+    "status": true,
+    "name": "The Art of UX Design",
+    "author": "Gary Anderson",
+    "edition": 1,
+    "publishedDate": "2022-03-20",
+    "pages": 240,
+    "price": 49.95,
+    "rating": 4,
+    "details": "A guide to creating compelling user experiences. Explore the principles and practices of UX design in this comprehensive guide. It covers user research, prototyping, and interaction design.",
+    "image": "https://covers.openlibrary.org/b/id/11895849-L.jpg"
   }
 ]
