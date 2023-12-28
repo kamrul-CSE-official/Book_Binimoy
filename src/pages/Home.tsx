@@ -8,6 +8,7 @@ import sail from '../assets/images/sale.json';
 import donate from '../assets/images/donation.json';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import 'animate.css/animate.min.css';
+import ScrollToTop from '@/components/ScrollToTop';
 
 export default function Home() {
   return (
@@ -366,7 +367,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+      <div className="fixed bottom-10 right-20 z-50">
+        <ScrollToTop />
+      </div>
       <Footer />
     </>
   );

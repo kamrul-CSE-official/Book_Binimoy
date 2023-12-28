@@ -72,7 +72,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
         </div>
       </div>
       <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? <p>loading</p> : <p>GitHub</p>}
+        {isLoading ? <p>loading</p> : <p>Google</p>}
       </Button>
     </div>
   );

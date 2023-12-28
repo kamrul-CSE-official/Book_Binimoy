@@ -1,10 +1,13 @@
 export interface IProduct {
-  _id: number;
+  id: number;
   name: string;
-  image: string;
-  price: number;
-  features: string[];
   status: boolean;
+  author: string;
+  edition: number;
+  publishedDate: string;
+  pages: number;
+  price: number;
   rating: number;
-  quantity?: number;
+  details: string;
+  image: string;
 }

@@ -16,7 +16,7 @@ export default function Products() {
       .then((data) => setData(data));
   }, []);
 
-  useToast();
+  const { toast } = useToast();
 
   //! Dummy Data
 
@@ -70,8 +70,11 @@ export default function Products() {
       </div>
 
       <div className="col-span-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-20">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa nisi sed
+        ullam voluptas voluptates eveniet, voluptatum odio placeat ducimus, et
+        inventore sit ipsam illum quia. Ipsum deserunt veniam ratione ex!
         {productsData?.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard key={product?.id} product={product} />
         ))}
       </div>
     </div>

@@ -15,7 +15,7 @@ export default function ProductDetails() {
       .then((data) => setData(data));
   }, []);
 
-  const product = data?.find((item) => item._id === Number(id));
+  const product = data?.find((item) => item.id === Number(id));
 
   //! Temporary code ends here
 
@@ -28,11 +28,7 @@ export default function ProductDetails() {
         <div className="w-[50%] space-y-3">
           <h1 className="text-3xl font-semibold">{product?.name}</h1>
           <p className="text-xl">Rating: {product?.rating}</p>
-          <ul className="space-y-1 text-lg">
-            {product?.features?.map((feature) => (
-              <li key={feature}>{feature}</li>
-            ))}
-          </ul>
+          <p className="my-2">{product?.details}</p>
           <Button>Add to cart</Button>
         </div>
       </div>
