@@ -7,6 +7,11 @@ import { IProduct } from '@/types/globalTypes';
 import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 import filterImg from '../assets/images/filter.json';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import {
+  setPriceRange,
+  toggleState,
+} from '@/redux/features/products/productSlices';
 
 export default function Products() {
   const [data, setData] = useState<IProduct[]>([]);
@@ -18,15 +23,11 @@ export default function Products() {
 
   const { toast } = useToast();
 
-  //! Dummy Data
-
-  const status = true;
-  const priceRange = 100;
-
-  //! **
+  const { priceRange, status } = useAppSelector((state) => state.product);
+  const dispatch = useAppDispatch();
 
   const handleSlider = (value: number[]) => {
-    console.log(value);
+    dispatch(setPriceRange(value[0]));
   };
 
   let productsData;
@@ -46,7 +47,10 @@ export default function Products() {
       <div className="col-span-3 z mr-10 space-y-5 border rounded-2xl border-gray-200/80 p-5 self-start sticky top-16 h-[calc(100vh-80px)]">
         <div>
           <h1 className="text-2xl uppercase">Availability</h1>
-          <div className="flex items-center space-x-2 mt-3">
+          <div
+            onClick={() => dispatch(toggleState())}
+            className="flex items-center space-x-2 mt-3"
+          >
             <Switch id="in-stock" />
             <Label htmlFor="in-stock">In stock</Label>
           </div>
