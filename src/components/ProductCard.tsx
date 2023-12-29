@@ -33,7 +33,7 @@ export default function ProductCard({ product }: IProps) {
           </p>
           <p className="text-sm">Price: {product?.price}</p>
           <div className="flex items-center justify-between">
-            <Link to={`/product-details/${product.id}`}>
+            <Link to={`/product-details/${product._id}`}>
               <Button variant="default">Details</Button>
             </Link>
             <Button variant="default" onClick={() => handleAddProduct(product)}>

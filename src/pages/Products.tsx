@@ -4,7 +4,6 @@ import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/components/ui/use-toast';
 import { IProduct } from '@/types/globalTypes';
-import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 import filterImg from '../assets/images/filter.json';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -12,14 +11,11 @@ import {
   setPriceRange,
   toggleState,
 } from '@/redux/features/products/productSlices';
+import Loder from '@/components/Loder';
+import { useGetProductsQuery } from '@/redux/features/products/productApi';
 
 export default function Products() {
-  const [data, setData] = useState<IProduct[]>([]);
-  useEffect(() => {
-    fetch('./data.json')
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
+  const { data, isLoading, error } = useGetProductsQuery(undefined);
 
   const { toast } = useToast();
 
@@ -33,11 +29,14 @@ export default function Products() {
   let productsData;
 
   if (status) {
-    productsData = data.filter(
-      (item) => item.status === true && item.price < priceRange
+    productsData = data?.data?.filter(
+      (item: { status: boolean; price: number }) =>
+        item.status === true && item.price < priceRange
     );
   } else if (priceRange > 0) {
-    productsData = data.filter((item) => item.price < priceRange);
+    productsData = data?.data?.filter(
+      (item: { price: number }) => item.price < priceRange
+    );
   } else {
     productsData = data;
   }
@@ -67,16 +66,20 @@ export default function Products() {
             />
           </div>
           <div>From 0$ To {priceRange}$</div>
-          <div className="absolute bottom-0">
-            <Lottie animationData={filterImg} />
+          <div className="absolute bottom-0 mx-auto">
+            <Lottie className="w-[60%] mx-auto" animationData={filterImg} />
           </div>
         </div>
       </div>
 
       <div className="col-span-9 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-20">
-        {productsData?.map((product) => (
-          <ProductCard key={product?.id} product={product} />
-        ))}
+        {productsData && !isLoading ? (
+          productsData?.map((product: IProduct) => (
+            <ProductCard key={product?._id} product={product} />
+          ))
+        ) : (
+          <Loder />
+        )}
       </div>
     </div>
   );

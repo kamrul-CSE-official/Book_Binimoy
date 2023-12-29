@@ -42,7 +42,7 @@ export default function Cart() {
           {products.map((product) => (
             <div
               className="border h-44 p-5 flex justify-between rounded-md"
-              key={product.name}
+              key={product._id}
             >
               <div className="border-r pr-5 shrink-0">
                 <img src={product?.image} alt="" className="h-full" />
