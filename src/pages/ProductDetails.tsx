@@ -1,11 +1,14 @@
 import ProductReview from '@/components/ProductReview';
 import { Button } from '@/components/ui/button';
+import { addToCart } from '@/redux/features/carts/cartsSlices';
+import { useAppDispatch } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
 
   //! Temporary code, should be replaced with redux
   const [data, setData] = useState<IProduct[]>([]);
@@ -29,7 +32,9 @@ export default function ProductDetails() {
           <h1 className="text-3xl font-semibold">{product?.name}</h1>
           <p className="text-xl">Rating: {product?.rating}</p>
           <p className="my-2">{product?.details}</p>
-          <Button>Add to cart</Button>
+          <Button onClick={() => dispatch(addToCart(product!))}>
+            Add to cart
+          </Button>
         </div>
       </div>
       <ProductReview />

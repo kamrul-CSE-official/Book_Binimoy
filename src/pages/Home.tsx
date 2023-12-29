@@ -47,7 +47,6 @@ export default function Home() {
             className="w-full h-fit lg:w-[600px] lg:h-[600px]"
             animationData={bookHero}
           />
-          ;
         </div>
       </div>
       {/* sale book */}
@@ -135,7 +134,6 @@ export default function Home() {
             className="w-full h-fit lg:w-[600px] lg:h-[600px]"
             animationData={donate}
           />
-          ;
         </div>
       </div>
       {/* about */}
@@ -325,7 +323,7 @@ export default function Home() {
         <div className="hero">
           <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">আমাদের সায়ে যুক্ত থাকুন!</h1>
+              <h1 className="text-5xl font-bold">আমাদের সাথে যুক্ত থাকুন!</h1>
               <p className="py-6">
                 আপনার মূন্যবান মতামত দিয়ে আমাদেরকে সাহায্য করুন। কি করে আমারা
                 আরো বেশি মানুষকে সাহয্য করতে পারি ? করে করে আরো বেশি মানুষের
@@ -345,7 +343,7 @@ export default function Home() {
                   <input
                     type="email"
                     placeholder="email"
-                    className="input border-primary bg-white text-white"
+                    className="input border-primary bg-white"
                     required
                   />
                 </div>
@@ -354,7 +352,7 @@ export default function Home() {
                     <span className="label-text text-black">Message</span>
                   </label>
                   <textarea
-                    className="textarea border-primary bg-white textarea-primary text-white"
+                    className="textarea border-primary bg-white textarea-primary"
                     placeholder="message..."
                     required
                   ></textarea>

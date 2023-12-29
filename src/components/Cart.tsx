@@ -26,8 +26,11 @@ export default function Cart() {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button variant="ghost">
-          <HiOutlineShoppingCart size="25" />
+        <Button variant="ghost" className="relative">
+          <HiOutlineShoppingCart size="25" />{' '}
+          <span className="absolute bottom-0 right-2 text-red-600 font-bold text-lg">
+            {products.length}
+          </span>
         </Button>
       </SheetTrigger>
       <SheetContent className="overflow-auto relative">
