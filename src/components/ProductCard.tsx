@@ -13,7 +13,6 @@ export default function ProductCard({ product }: IProps) {
   const dispatch = useAppDispatch();
 
   const handleAddProduct = (product: IProduct) => {
-    console.log('Add ', product);
     dispatch(addToCart(product));
 
     toast({
