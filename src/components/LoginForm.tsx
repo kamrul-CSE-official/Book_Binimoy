@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
+import { AuthContext } from '@/Providers/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -17,6 +19,10 @@ interface LoginFormInputs {
 }
 
 export function LoginForm({ className, ...props }: UserAuthFormProps) {
+  const { user, signUpWithGoogle } = React.useContext(AuthContext)!;
+  console.log('User: ', user);
+  const navacation = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -25,6 +31,11 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 
   const onSubmit = (data: LoginFormInputs) => {
     console.log(data);
+  };
+
+  const handleGoogleLogin = () => {
+    signUpWithGoogle();
+    navacation('/');
   };
 
   return (
@@ -69,6 +80,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
         </div>
       </div>
       <Button
+        onClick={() => handleGoogleLogin()}
         variant="outline"
         type="button"
         className="flex items-center justify-between"

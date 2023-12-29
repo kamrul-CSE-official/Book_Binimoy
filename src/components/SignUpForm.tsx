@@ -26,6 +26,19 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
+            <Label className="sr-only" htmlFor="name">
+              Full Name
+            </Label>
+            <Input
+              id="name"
+              placeholder="MD.Kamrul Hasan"
+              type="name"
+              autoCapitalize="none"
+              autoComplete="name"
+              autoCorrect="off"
+              disabled={isLoading}
+              required
+            />
             <Label className="sr-only" htmlFor="email">
               Email
             </Label>
@@ -37,6 +50,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
               autoComplete="email"
               autoCorrect="off"
               disabled={isLoading}
+              required
             />
             <Input
               id="password"
@@ -45,6 +59,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoCorrect="off"
               disabled={isLoading}
+              required
             />
             <Input
               id="password"
@@ -53,6 +68,15 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoCorrect="off"
               disabled={isLoading}
+              required
+            />
+            <p>Profile Pic</p>
+            <input
+              type="file"
+              name="img"
+              id="img"
+              placeholder="Profile Pic"
+              required
             />
           </div>
           <Button disabled={isLoading}>
