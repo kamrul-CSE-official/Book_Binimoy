@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import Lottie from 'lottie-react';
+import postImg from '../assets/images/post.json';
 
 export default function BookPost() {
   const [bookTitle, setBookTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [price, setPrice] = useState('');
   const [condition, setCondition] = useState('');
+  const [genre, setGenre] = useState('');
   const [stock, setStock] = useState(0);
   const [publishDate, setPublishDate] = useState('');
   const [edition, setEdition] = useState('');
@@ -20,6 +23,7 @@ export default function BookPost() {
       author,
       price,
       condition,
+      genre,
       stock,
       publishDate,
       edition,
@@ -37,6 +41,7 @@ export default function BookPost() {
     setEdition('');
     setImage(null);
     setContactInfo('');
+    setGenre('');
   };
 
   return (
@@ -44,13 +49,24 @@ export default function BookPost() {
       className="relative"
       style={{
         backgroundImage:
-          'url(https://www.cam.ac.uk/sites/www.cam.ac.uk/files/news/research/features/261017old-book-wall-credit-motilal-books.jpg)',
+          'url(https://img.freepik.com/premium-photo/library-books-library-books-library-shelves-bookshelf-full-bookshelf-generative-ai_438099-15531.jpg?w=1060)',
         backgroundSize: 'cover', // Ensures the background image covers the entire container
         opacity: 0.9, // Adjust the opacity as needed (0 to 1)
       }}
     >
-      <div className="w-full md:w-1/2 mx-auto bg-white p-5 m-3 rounded-xl text-black">
-        <h2 className="text-2xl font-bold mb-4">Post a Book for Sale</h2>
+      <div className="fixed w-1/5 top-56 md:top-14 right-5">
+        <Lottie animationData={postImg} />
+      </div>
+      <div className="w-full md:w-3/4 mx-auto bg-white p-5 m-3 rounded-xl text-black">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">
+            আপনার পুরাতন ধুলা মাখা অব্যবহৃত বইটি হয়তো অন্য কারো বিশেষ প্রয়জন
+          </h2>
+          <p>
+            আমাদের প্রধান উদ্দিশ্য মানুষের কাছে স্বল্প মূল্যে বই পৌছে দেয়া।
+            আপনার কাছে মৃতপ্রয় বইটি অন্যনের কাছে দিয়ে নতুন জীবন দান করুন।
+          </p>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -99,6 +115,31 @@ export default function BookPost() {
               onChange={(e) => setPrice(e.target.value)}
               required
             />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="genre"
+              className="block text-sm font-semibold text-gray-600"
+            >
+              Genre:
+            </label>
+            <select
+              value={genre}
+              onChange={(e) => setGenre(e.target.value)}
+              className="select select-primary bg-white text-black w-full"
+            >
+              <option disabled selected>
+                আপনার বই কোন ক্যেটাগরিতে পরেছে?
+              </option>
+              <option>পোগ্রামিং</option>
+              <option>জাতীয় শিক্ষাক্রম</option>
+              <option>গল্প</option>
+              <option>উপন্যাস</option>
+              <option>কবিতা</option>
+              <option>ধার্মিক</option>
+              <option>খেলাধুলা</option>
+              <option>অনান্য</option>
+            </select>
           </div>
           <div className="mb-4">
             <label
