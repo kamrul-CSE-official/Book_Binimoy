@@ -1,4 +1,5 @@
 import auth from '@/firebase/firebase.config';
+import axios from 'axios';
 import {
   GoogleAuthProvider,
   UserCredential,
@@ -7,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  User, // Import User from firebase/auth
 } from 'firebase/auth';
 import PropTypes from 'prop-types';
 import { createContext, ReactNode, useEffect, useState } from 'react';
@@ -16,7 +18,7 @@ interface AuthProviderProps {
 }
 
 interface AuthInfo {
-  user: UserCredential | null;
+  user: User | null;
   loading: boolean;
   createUser: (email: string, password: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
@@ -27,17 +29,11 @@ interface AuthInfo {
 export const AuthContext = createContext<AuthInfo | null>(null);
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<UserCredential | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
 
-  // const storeUserData = () => {
-  //   const userData = {
-  //     email: user!.email as string,
-  //   };
-  // };
-
-  //   create User
+  // create User
   const createUser = (email: string, password: string) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -49,7 +45,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  //   login / signUp with google
+  // login / signUp with google
   const signUpWithGoogle = () => {
     return signInWithPopup(auth, googleProvider);
   };
@@ -61,10 +57,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser as UserCredential | null);
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser);
       setLoading(false);
     });
+
     return () => {
       unSubscribe();
     };

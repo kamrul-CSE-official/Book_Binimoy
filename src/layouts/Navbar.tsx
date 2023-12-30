@@ -12,8 +12,25 @@ import {
 import { HiOutlineSearch } from 'react-icons/hi';
 import Cart from '../components/Cart';
 import logo from '../assets/images/logo.png';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '@/Providers/AuthProvider';
+import axios from 'axios';
+
+interface UserData {
+  img: string;
+}
 
 export default function Navbar() {
+  const { user, logOut } = useContext(AuthContext)!;
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/users/${user?.email}`).then((req) => {
+      setUserData({ ...user, ...req.data.data[0] });
+    });
+    console.log('Marg: ', userData);
+  }, [user]);
+
   return (
     <nav className="w-full h-16 fixed top backdrop-blur-lg z-10">
       <div className="h-full w-full bg-white/60">
@@ -46,32 +63,43 @@ export default function Navbar() {
               <li>
                 <Cart />
               </li>
-              <li className="ml-5">
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="outline-none">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem className="cursor-pointer">
-                      Profile
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Billing
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Team
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Subscription
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </li>
+              {!user ? (
+                <li>
+                  <Link to="/login">
+                    <button className="btn text-xl font-bold">Login</button>
+                  </Link>
+                </li>
+              ) : (
+                <li className="ml-5">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="outline-none">
+                      <Avatar>
+                        <AvatarImage src={userData?.img} />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel>Account</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem className="cursor-pointer">
+                        Profile
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="cursor-pointer">
+                        Billing
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="cursor-pointer">
+                        Team
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => logOut()}
+                        className="cursor-pointer text-red-500 font-bold"
+                      >
+                        Logout
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </li>
+              )}
             </ul>
           </div>
         </div>
