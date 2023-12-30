@@ -88,7 +88,9 @@ export default function Home() {
                 বিক্রয়ে লেনদেন সুবিধাজনক এবং দ্রুত করতে সাহায্য করতে পারে।
               </p>
             </div>
-            <Button className="mt-5">Learn more</Button>
+            <Link to="/postBook">
+              <Button className="mt-5">Post A Book</Button>
+            </Link>
           </div>
         </AnimationOnScroll>
       </div>
@@ -126,7 +128,9 @@ export default function Home() {
                 করতে পারে।
               </p>
             </div>
-            <Button className="mt-5">Learn more</Button>
+            <Link to="/postBook">
+              <Button className="mt-5">Post A Book</Button>
+            </Link>
           </div>
         </AnimationOnScroll>
         <div className="w-full lg:w-[44%]">

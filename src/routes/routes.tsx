@@ -9,6 +9,7 @@ import Signup from '@/pages/Signup';
 import ProductDetails from '@/pages/ProductDetails';
 import About from '@/pages/About';
 import PrivateRoute from './privateRoute';
+import BookPost from '@/pages/BookPost';
 
 const routes = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
             <ProductDetails />
           </PrivateRoute>
         ),
+      },
+      {
+        path: '/postBook',
+        element: <BookPost />,
       },
       {
         path: '/checkout',
