@@ -6,13 +6,69 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { useAppSelector } from '@/redux/hooks';
+import Confetti from 'react-confetti';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default function Checkout() {
-  const [scheduled, setScheduled] = useState<boolean>(false);
-
   const { products, total } = useAppSelector((state) => state.cart);
+  const [scheduled, setScheduled] = useState<boolean>(false);
+  const [enjoy, setEnjoy] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    city: '',
+    address: '',
+    note: '',
+    payment: 'Online',
+  });
+
+  const handleCheckout = () => {
+    const checkOutInfo = {
+      customerName: formData.name,
+      customerEmail: formData.email,
+      customerPhone: formData.phone,
+      customerCity: formData.city,
+      customerNode: formData.note,
+      customerAddress: formData.address,
+      bookInfo: products,
+    };
+    console.log(checkOutInfo);
+    axios.post('http://localhost:5000/orders', checkOutInfo).then((res) => {
+      if (res) {
+        Swal.fire({
+          title: 'Thank You For Order💖',
+          icon: 'success',
+        });
+        setEnjoy(true);
+      }
+    });
+  };
+
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // Add event listener to update dimensions on window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className="flex justify-center items-center h-[calc(100vh-80px)] gap-10 text-primary">
@@ -23,27 +79,66 @@ export default function Checkout() {
             <div className="w-full space-y-5">
               <div>
                 <Label htmlFor="name">Name</Label>
-                <Input type="text" id="name" className="mt-2" />
+                <Input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                  className="mt-2"
+                />
               </div>
               <div>
                 <Label htmlFor="name">Email</Label>
-                <Input type="text" id="name" className="mt-2" />
+                <Input
+                  type="text"
+                  id="name"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  className="mt-2"
+                />
               </div>
             </div>
             <div className="w-full space-y-5">
               <div>
                 <Label htmlFor="name">Phone</Label>
-                <Input type="text" id="name" className="mt-2" />
+                <Input
+                  type="text"
+                  id="name"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  className="mt-2"
+                />
               </div>
               <div>
                 <Label htmlFor="name">City</Label>
-                <Input type="text" id="name" className="mt-2" />
+                <Input
+                  type="text"
+                  id="name"
+                  value={formData.city}
+                  onChange={(e) =>
+                    setFormData({ ...formData, city: e.target.value })
+                  }
+                  className="mt-2"
+                />
               </div>
             </div>
           </div>
           <div className="mt-5">
             <Label htmlFor="name">Address</Label>
-            <Textarea id="name" className="mt-2" />
+            <Textarea
+              id="name"
+              value={formData.address}
+              onChange={(e) =>
+                setFormData({ ...formData, address: e.target.value })
+              }
+              className="mt-2"
+            />
           </div>
           <div className="flex items-center gap-2 mt-5">
             <Label className="text-lg">Scheduled Delivery</Label>
@@ -55,6 +150,10 @@ export default function Checkout() {
               <Input
                 disabled={!scheduled}
                 type="text"
+                value={formData.note}
+                onChange={(e) =>
+                  setFormData({ ...formData, note: e.target.value })
+                }
                 id="note"
                 className="mt-3"
               />
@@ -69,7 +168,15 @@ export default function Checkout() {
           <div className="mt-3">
             <Label className="text-lg">Payment method</Label>
             <div className="flex gap-5 mt-5">
-              <RadioGroup defaultValue="comfortable" className="flex">
+              <RadioGroup
+                defaultValue="comfortable"
+                onChange={(value) => {
+                  if (typeof value === 'string') {
+                    setFormData({ ...formData, payment: value });
+                  }
+                }}
+                className="flex"
+              >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem
                     value="online"
@@ -99,7 +206,7 @@ export default function Checkout() {
               <div className="flex justify-between items-center bg-gray-100 p-1 rounded-lg">
                 <div className="flex items-center">
                   <img
-                    src={product.image}
+                    src={product.img}
                     className="h-[82px] rounded-md mr-2"
                     alt=""
                   />
@@ -127,12 +234,24 @@ export default function Checkout() {
               <p>Total</p>
               <p>{Math.ceil(total + 120.5)}৳</p>
             </div>
-            <Button disabled={total < 0 ? false : true} className="w-full">
+            <Button
+              disabled={Math.ceil(total) <= 0 ? true : false}
+              className="w-full"
+              onClick={handleCheckout}
+            >
               Checkout
             </Button>
           </div>
         </div>
-      </div>
+      </div>{' '}
+      {enjoy && (
+        <div className="hidden md:block">
+          <Confetti
+            width={windowDimensions.width - 300}
+            height={windowDimensions.height - 20}
+          />
+        </div>
+      )}
     </div>
   );
 }

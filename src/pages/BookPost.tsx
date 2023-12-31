@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
 import postImg from '../assets/images/post.json';
 import Loder from '@/components/Loder';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-
+import { AuthContext } from '@/Providers/AuthProvider';
+interface UserData {
+  img: string;
+  name: string;
+  email: string;
+}
 export default function BookPost() {
+  const { user } = useContext(AuthContext)!;
+  const [userData, setUserData] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/users/${user?.email}`).then((req) => {
+      setUserData({ ...user, ...req.data.data[0] });
+    });
+    console.log(userData);
+  }, [user]);
   const [bookTitle, setBookTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [price, setPrice] = useState('');
-  const [condition, setCondition] = useState('');
+  const [condition, setCondition] = useState('Good');
   const [genre, setGenre] = useState('');
   const [stock, setStock] = useState('');
   const [publishDate, setPublishDate] = useState('');
@@ -61,7 +75,12 @@ export default function BookPost() {
           adition: edition,
           contact: contactInfo,
           genre: genre,
-          price: price,
+          price: parseFloat(price) + (parseFloat(price) / 100) * 5,
+          sellerInfo: {
+            name: userData?.name,
+            email: userData?.email,
+            imag: userData?.img,
+          },
         };
         // Now you can use imageUrl as needed (e.g., save it to your database)
         axios.post('http://localhost:5000/products', bookData).then((res) => {
@@ -206,14 +225,14 @@ export default function BookPost() {
                 <option disabled selected>
                   আপনার বই কোন ক্যেটাগরিতে পরেছে?
                 </option>
-                <option>পোগ্রামিং</option>
-                <option>জাতীয় শিক্ষাক্রম</option>
-                <option>গল্প</option>
-                <option>উপন্যাস</option>
-                <option>কবিতা</option>
-                <option>ধার্মিক</option>
-                <option>খেলাধুলা</option>
-                <option>অনান্য</option>
+                <option value="পোগ্রামিং">পোগ্রামিং</option>
+                <option value="জাতীয় শিক্ষাক্রম">জাতীয় শিক্ষাক্রম</option>
+                <option value="গল্প">গল্প</option>
+                <option value="উপন্যাস">উপন্যাস</option>
+                <option value="কবিতা">কবিতা</option>
+                <option value="ধার্মিক">ধার্মিক</option>
+                <option value="খেলাধুলা">খেলাধুলা</option>
+                <option value="অনান্য">অনান্য</option>
               </select>
             </div>
             <div className="mb-4">
@@ -231,10 +250,12 @@ export default function BookPost() {
                 <option disabled selected>
                   মিথ্যা বলে প্রতারিত করবেন না!
                 </option>
-                <option>Good</option>
-                <option>Better</option>
-                <option>Best</option>
-                <option>New</option>
+                <option value="Not Good">Not Good</option>
+                <option value="Normal">Normal</option>
+                <option value="Good">Good</option>
+                <option value="Better">Better</option>
+                <option value="Best">Best</option>
+                <option value="New">New</option>
               </select>
             </div>
             <div className="mb-4">
@@ -305,11 +326,11 @@ export default function BookPost() {
                 htmlFor="contactInfo"
                 className="block text-sm font-semibold text-gray-600"
               >
-                Contact Information:
+                Comment (Why you sell this book):
               </label>
               <textarea
                 id="contactInfo"
-                className="w-full bg-white mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                className="input input-bordered input-info w-full bg-white"
                 value={contactInfo}
                 onChange={(e) => setContactInfo(e.target.value)}
                 required

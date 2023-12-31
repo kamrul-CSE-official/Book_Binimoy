@@ -1,15 +1,16 @@
 export interface IProduct {
-  _id?: string;
-  id: number;
+  _id: string;
+  price: string;
   name: string;
-  status: boolean;
+  stock: number;
   author: string;
   edition: number;
   publishedDate: string;
   pages: number;
-  price: number;
   rating: number;
   details: string;
-  image: string;
-  quantity?: number;
+  img: string;
+  condition: string;
+  status: boolean;
+  quantity: number;
 }
