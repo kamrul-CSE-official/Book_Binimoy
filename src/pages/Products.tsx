@@ -13,6 +13,7 @@ import {
 } from '@/redux/features/products/productSlices';
 import Loder from '@/components/Loder';
 import { useGetProductsQuery } from '@/redux/features/products/productApi';
+import { Link } from 'react-router-dom';
 
 export default function Products() {
   const { data, isLoading, error } = useGetProductsQuery(undefined);
@@ -81,6 +82,11 @@ export default function Products() {
           <Loder />
         )}
       </div>
+      <Link to="/postBook">
+        <button className="btn absolute bottom-5 right-0 text-white shadow-xl">
+          Post A Book
+        </button>
+      </Link>
     </div>
   );
 }

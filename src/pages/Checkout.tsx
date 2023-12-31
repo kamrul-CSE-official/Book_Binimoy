@@ -117,17 +117,19 @@ export default function Checkout() {
           <div className="space-y-2">
             <div className="flex justify-between text-lg">
               <p>Subtotal</p>
-              <p>77.90৳</p>
+              <p>{Math.ceil(total)}৳</p>
             </div>
             <div className="flex justify-between text-lg">
               <p>Delivery</p>
-              <p>4.5৳</p>
+              <p>120.5৳</p>
             </div>
             <div className="flex justify-between text-xl font-bold">
               <p>Total</p>
-              <p>{Math.ceil(total)}৳</p>
+              <p>{Math.ceil(total + 120.5)}৳</p>
             </div>
-            <Button className="w-full">Checkout</Button>
+            <Button disabled={total < 0 ? false : true} className="w-full">
+              Checkout
+            </Button>
           </div>
         </div>
       </div>
