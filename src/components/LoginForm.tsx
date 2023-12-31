@@ -1,6 +1,3 @@
-// Assuming that '@/lib/utils', '@/components/ui/button', '@/components/ui/input', and '@/components/ui/label'
-// are correctly set up in your project and have TypeScript declarations.
-
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -8,6 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
+import { AuthContext } from '@/Providers/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+import { UserCredential } from 'firebase/auth';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -17,6 +19,10 @@ interface LoginFormInputs {
 }
 
 export function LoginForm({ className, ...props }: UserAuthFormProps) {
+  const { user, signUpWithGoogle, login } = React.useContext(AuthContext)!;
+  const navacation = useNavigate();
+  console.log(user?.email);
+
   const {
     register,
     handleSubmit,
@@ -25,6 +31,47 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
 
   const onSubmit = (data: LoginFormInputs) => {
     console.log(data);
+    login(data.email, data.password).then((res) => {
+      if (res?.user?.uid) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navacation('/');
+      }
+    });
+  };
+
+  const handleGoogleLogin = () => {
+    signUpWithGoogle()
+      .then((res: UserCredential) => {
+        console.log(res.user);
+        const info = res.user;
+
+        if (info) {
+          const user = {
+            name: info.displayName,
+            email: info.email,
+            img: info.photoURL,
+          };
+          axios.post('http://localhost:5000/users', user);
+
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navacation('/');
+        }
+      })
+      .catch((error) => {
+        console.error('Google login failed:', error);
+      });
   };
 
   return (
@@ -69,6 +116,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
         </div>
       </div>
       <Button
+        onClick={() => handleGoogleLogin()}
         variant="outline"
         type="button"
         className="flex items-center justify-between"
