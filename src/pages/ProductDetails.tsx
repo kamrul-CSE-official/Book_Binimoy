@@ -17,17 +17,38 @@ export default function ProductDetails() {
         {product && !isLoading ? (
           <div>
             <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300">
-              <div className="w-[50%]">
-                <img src={product?.data?.image} alt="" />
+              <div className="w-[50%] h-fit">
+                <img
+                  className="w-1/2"
+                  src={product?.data?.img}
+                  alt="book img"
+                />
               </div>
               <div className="w-[50%] space-y-3">
                 <h1 className="text-3xl font-semibold">
                   {product?.data?.name}
                 </h1>
-                <p className="text-xl">Rating: {product?.data?.rating}</p>
+                <h4>{product?.data?.author}</h4>
                 <p className="text-xl font-bold">{product?.data?.price} ৳</p>
-                <p className="my-2">{product?.data?.details}</p>
-                <Button onClick={() => dispatch(addToCart(product?.data))}>
+                <p>Contition: {product?.data?.condition}</p>
+                <p className="my-2">{product?.data?.contact}</p>
+                <p className="text-red-500 font-bold">
+                  {product?.data?.stock <= 0 && 'Stock Out'}
+                </p>
+                <h4>Seller: </h4>
+                <div className="avatar">
+                  <div className="w-12">
+                    <img src={product?.data?.sellerInfo?.imag} />
+                  </div>
+                  <small className="ml-3 mt-3">
+                    {product?.data?.sellerInfo?.name}
+                  </small>
+                </div>
+                <br />
+                <Button
+                  disabled={product?.data?.stock <= 0 ? true : false}
+                  onClick={() => dispatch(addToCart(product?.data))}
+                >
                   Add to cart
                 </Button>
               </div>

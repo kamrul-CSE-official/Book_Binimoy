@@ -4,11 +4,13 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 interface IProduct {
   status: boolean;
   priceRange: number;
+  stock: number;
 }
 
 const initialState: IProduct = {
   status: false,
   priceRange: 150,
+  stock: 0,
 };
 
 const productSlice = createSlice({

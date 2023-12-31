@@ -9,6 +9,8 @@ import Signup from '@/pages/Signup';
 import ProductDetails from '@/pages/ProductDetails';
 import About from '@/pages/About';
 import PrivateRoute from './privateRoute';
+import BookPost from '@/pages/BookPost';
+import Profile from '@/pages/Profile';
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +30,22 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ProductDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/postBook',
+        element: (
+          <PrivateRoute>
+            <BookPost />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/profile',
+        element: (
+          <PrivateRoute>
+            <Profile />
           </PrivateRoute>
         ),
       },

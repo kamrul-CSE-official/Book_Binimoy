@@ -13,6 +13,7 @@ import {
 } from '@/redux/features/products/productSlices';
 import Loder from '@/components/Loder';
 import { useGetProductsQuery } from '@/redux/features/products/productApi';
+import { Link } from 'react-router-dom';
 
 export default function Products() {
   const { data, isLoading, error } = useGetProductsQuery(undefined);
@@ -30,8 +31,8 @@ export default function Products() {
 
   if (status) {
     productsData = data?.data?.filter(
-      (item: { status: boolean; price: number }) =>
-        item.status === true && item.price < priceRange
+      (item: { stock: number; price: number }) =>
+        item.stock >= 1 && item.price < priceRange
     );
   } else if (priceRange > 0) {
     productsData = data?.data?.filter(
@@ -58,14 +59,22 @@ export default function Products() {
           <h1 className="text-2xl uppercase">Price Range</h1>
           <div className="max-w-xl">
             <Slider
-              defaultValue={[150]}
-              max={150}
-              min={0}
+              defaultValue={[90]}
+              max={1000}
+              min={1}
               step={1}
               onValueChange={(value) => handleSlider(value)}
             />
           </div>
           <div>From 0$ To {priceRange}$</div>
+          <div className="container mx-auto pt-10">
+            <Link to="/postBook">
+              <button className="btn text-white shadow-xl transform transition-transform duration-300 hover:scale-110">
+                Post A Book
+              </button>
+            </Link>
+          </div>
+
           <div className="absolute bottom-0 mx-auto">
             <Lottie className="w-[60%] mx-auto" animationData={filterImg} />
           </div>

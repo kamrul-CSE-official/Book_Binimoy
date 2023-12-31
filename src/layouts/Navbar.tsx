@@ -15,6 +15,7 @@ import logo from '../assets/images/logo.png';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '@/Providers/AuthProvider';
 import axios from 'axios';
+import { User } from 'firebase/auth';
 
 interface UserData {
   img: string;
@@ -28,7 +29,7 @@ export default function Navbar() {
     axios.get(`http://localhost:5000/users/${user?.email}`).then((req) => {
       setUserData({ ...user, ...req.data.data[0] });
     });
-    console.log('Marg: ', userData);
+    console.log(userData);
   }, [user]);
 
   return (
@@ -81,9 +82,11 @@ export default function Navbar() {
                     <DropdownMenuContent>
                       <DropdownMenuLabel>Account</DropdownMenuLabel>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem className="cursor-pointer">
-                        Profile
-                      </DropdownMenuItem>
+                      <Link to="/profile">
+                        <DropdownMenuItem className="cursor-pointer">
+                          Profile
+                        </DropdownMenuItem>
+                      </Link>
                       <DropdownMenuItem className="cursor-pointer">
                         Billing
                       </DropdownMenuItem>

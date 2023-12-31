@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { AuthContext } from '@/Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { UserCredential } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -16,6 +16,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
   const navacation = useNavigate();
+  const location = useLocation();
 
   async function handleCreateUser(event: React.SyntheticEvent) {
     event.preventDefault();
@@ -67,7 +68,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
                 showConfirmButton: false,
                 timer: 1500,
               });
-              navacation('/');
+              navacation(location?.state ? location.state : '/');
             })
             .catch((error) => {
               console.error('User creation failed:', error);
@@ -110,7 +111,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
             showConfirmButton: false,
             timer: 1500,
           });
-          navacation('/');
+          navacation(location?.state ? location.state : '/');
         }
       })
       .catch((error) => {

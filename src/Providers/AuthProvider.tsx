@@ -1,5 +1,4 @@
 import auth from '@/firebase/firebase.config';
-import axios from 'axios';
 import {
   GoogleAuthProvider,
   UserCredential,
@@ -20,6 +19,7 @@ interface AuthProviderProps {
 interface AuthInfo {
   user: User | null;
   loading: boolean;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
   createUser: (email: string, password: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
   signUpWithGoogle: () => Promise<UserCredential>;
@@ -70,6 +70,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const authInfo: AuthInfo = {
     user,
     loading,
+    setUser,
     createUser,
     login,
     signUpWithGoogle,

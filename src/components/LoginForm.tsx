@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '@/Providers/AuthProvider';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { UserCredential } from 'firebase/auth';
 import Swal from 'sweetalert2';
 import axios from 'axios';
@@ -19,9 +19,9 @@ interface LoginFormInputs {
 }
 
 export function LoginForm({ className, ...props }: UserAuthFormProps) {
-  const { user, signUpWithGoogle, login } = React.useContext(AuthContext)!;
+  const { signUpWithGoogle, login } = React.useContext(AuthContext)!;
   const navacation = useNavigate();
-  console.log(user?.email);
+  const location = useLocation();
 
   const {
     register,
@@ -40,7 +40,8 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
           showConfirmButton: false,
           timer: 1500,
         });
-        navacation('/');
+
+        navacation(location?.state ? location.state : '/');
       }
     });
   };
@@ -66,7 +67,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
             showConfirmButton: false,
             timer: 1500,
           });
-          navacation('/');
+          navacation(location?.state ? location.state : '/');
         }
       })
       .catch((error) => {
